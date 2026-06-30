@@ -9,6 +9,7 @@ The goal of this part is to explain the design of the application before startin
 - Task 0: High-Level Package Diagram
 - Task 1: Detailed Class Diagram for the Business Logic Layer
 - Task 2: Sequence Diagrams for API Calls
+- Task 3: Documentation Compilation
 
 ---
 
@@ -110,13 +111,13 @@ Solid arrows show requests or method calls.
 
 Dashed arrows show returned results.
 
+![Task 2 Sequence Diagrams](hbnb_task2_all_sequence_diagrams.png)
+
 ---
 
 ### 1. User Registration
 
 This diagram shows how a new user account is created.
-
-![User Registration Sequence Diagram](hbnb_task2_sequence_user_registration.png)
 
 The client sends user data to the API using `POST /users`.
 
@@ -140,15 +141,13 @@ Final response:
 
 This diagram shows how a user creates a new place listing.
 
-![Place Creation Sequence Diagram](hbnb_task2_sequence_place_creation.png)
-
 The client sends place data to the API using `POST /places`.
 
 The API sends the request to `HBnBFacade`.
 
 The facade checks if the owner exists.
 
-If the owner exists, the facade asks `PlaceRepo` to save the new place.
+If the owner exists, the facade asks `PlaceRepository` to save the new place.
 
 The place is saved in the database.
 
@@ -164,8 +163,6 @@ Final response:
 
 This diagram shows how a user submits a review for a place.
 
-![Review Submission Sequence Diagram](hbnb_task2_sequence_review_submission.png)
-
 The client sends review data to the API.
 
 The API sends the request to `HBnBFacade`.
@@ -174,7 +171,7 @@ The facade checks if the user exists.
 
 The facade also checks if the place exists.
 
-After that, the facade asks `ReviewRepo` to save the review.
+After that, the facade asks `ReviewRepository` to save the review.
 
 The review is saved in the database.
 
@@ -190,15 +187,13 @@ Final response:
 
 This diagram shows how the client gets a list of places.
 
-![Fetch Places Sequence Diagram](hbnb_task2_sequence_fetch_places.png)
-
 The client sends a `GET /places` request to the API.
 
 The API asks `HBnBFacade` for the list of places.
 
-The facade asks `PlaceRepo` to get all places.
+The facade asks `PlaceRepository` to get all places.
 
-`PlaceRepo` queries the database.
+`PlaceRepository` queries the database.
 
 The database returns the list of places.
 
@@ -210,6 +205,25 @@ Final response:
 
 ---
 
+## Task 3 - Documentation Compilation
+
+This task combines all previous diagrams and notes into one technical document.
+
+The document includes:
+
+- Introduction
+- High-Level Architecture
+- Business Logic Layer
+- API Interaction Flow
+- Overall Design Summary
+
+Files:
+
+- [Technical Documentation - Markdown](HBnB_Part1_Technical_Documentation.md)
+- [Technical Documentation - PDF](HBnB_Part1_Technical_Documentation.pdf)
+
+---
+
 ## Short Summary
 
 Task 0 explains the big structure of the application.
@@ -217,5 +231,7 @@ Task 0 explains the big structure of the application.
 Task 1 explains the business classes, their attributes, methods, and relationships.
 
 Task 2 explains how API requests move step by step between the layers.
+
+Task 3 combines all diagrams and explanations into one technical document.
 
 Together, these diagrams give a simple first design for the HBnB application.
