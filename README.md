@@ -8,6 +8,7 @@ The goal of this part is to explain the design of the application before startin
 
 - Task 0: High-Level Package Diagram
 - Task 1: Detailed Class Diagram for the Business Logic Layer
+- Task 2: Sequence Diagrams for API Calls
 
 ---
 
@@ -84,10 +85,137 @@ The main classes are:
 - One `Review` is about one `Place`.
 - `Place` and `Amenity` have a many-to-many relationship.
 
+---
+
+## Task 2 - Sequence Diagrams for API Calls
+
+This task shows how different API requests move through the HBnB application.
+
+The diagrams focus on four API calls:
+
+- User Registration
+- Place Creation
+- Review Submission
+- Fetching a List of Places
+
+In these diagrams, the request usually follows this path:
+
+```text
+Client -> API -> HBnBFacade -> Repository -> Database
+```
+
+Then the result returns back to the client.
+
+Solid arrows show requests or method calls.
+
+Dashed arrows show returned results.
+
+---
+
+### 1. User Registration
+
+This diagram shows how a new user account is created.
+
+![User Registration Sequence Diagram](hbnb_task2_sequence_user_registration.png)
+
+The client sends user data to the API using `POST /users`.
+
+The API sends the request to `HBnBFacade`.
+
+The facade asks the repository to check and save the user.
+
+The repository saves the user in the database.
+
+After the user is saved, the response goes back to the client.
+
+Final response:
+
+```text
+201 Created
+```
+
+---
+
+### 2. Place Creation
+
+This diagram shows how a user creates a new place listing.
+
+![Place Creation Sequence Diagram](hbnb_task2_sequence_place_creation.png)
+
+The client sends place data to the API using `POST /places`.
+
+The API sends the request to `HBnBFacade`.
+
+The facade checks if the owner exists.
+
+If the owner exists, the facade asks `PlaceRepo` to save the new place.
+
+The place is saved in the database.
+
+Final response:
+
+```text
+201 Created
+```
+
+---
+
+### 3. Review Submission
+
+This diagram shows how a user submits a review for a place.
+
+![Review Submission Sequence Diagram](hbnb_task2_sequence_review_submission.png)
+
+The client sends review data to the API.
+
+The API sends the request to `HBnBFacade`.
+
+The facade checks if the user exists.
+
+The facade also checks if the place exists.
+
+After that, the facade asks `ReviewRepo` to save the review.
+
+The review is saved in the database.
+
+Final response:
+
+```text
+201 Created
+```
+
+---
+
+### 4. Fetching a List of Places
+
+This diagram shows how the client gets a list of places.
+
+![Fetch Places Sequence Diagram](hbnb_task2_sequence_fetch_places.png)
+
+The client sends a `GET /places` request to the API.
+
+The API asks `HBnBFacade` for the list of places.
+
+The facade asks `PlaceRepo` to get all places.
+
+`PlaceRepo` queries the database.
+
+The database returns the list of places.
+
+Final response:
+
+```text
+200 OK
+```
+
+---
+
 ## Short Summary
 
 Task 0 explains the big structure of the application.
 
 Task 1 explains the business classes, their attributes, methods, and relationships.
+
+Task 2 explains how API requests move step by step between the layers.
 
 Together, these diagrams give a simple first design for the HBnB application.
