@@ -23,7 +23,7 @@ The application is divided into three main layers:
 
 The `HBnBFacade` is used to connect the API with the internal logic of the application.
 
-![Task 0 Package Diagram](images/task0_package_diagram.png)
+![Task 0 Package Diagram](task0_package_diagram.png)
 
 ### Explanation
 
@@ -55,7 +55,7 @@ The main classes are:
 - `Review`
 - `Amenity`
 
-![Task 1 Class Diagram](images/task1_class_diagram.png)
+![Task 1 Class Diagram](task1_class_diagram.png)
 
 ### Explanation
 
